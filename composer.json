@@ -2,7 +2,7 @@
 	"name" : "Sdkcodes/LaraTicket",
 	"description" : "A laravel 5 package to handle 'support ticket'",
 	"type" : "laravel-package",
-	"keywords" : ["laravel support ticket", "Laravel ticket support" "ticket laravel", "laravel-5-package"],
+	"keywords" : ["laravel support ticket", "Laravel ticket support", "ticket laravel", "laravel-5-package"],
 	"require": {
 	    "laravel/framework": "^5.1",
 	    "illuminate/support": "^5.1"
