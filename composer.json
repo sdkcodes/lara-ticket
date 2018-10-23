@@ -1,5 +1,5 @@
 {
-	"name" : "Sdkcodes/LaraTicket",
+	"name" : "sdkcodes/lara-ticket",
 	"description" : "A laravel 5 package to handle 'support ticket'",
 	"type" : "laravel-package",
 	"keywords" : ["laravel support ticket", "Laravel ticket support", "ticket laravel", "laravel-5-package"],
