@@ -3,6 +3,7 @@
 ### About
 <hr>
 A Laravel 5 package to handle ticket support system within your project. LaraTicket integerates nicely with the existing users database and authentication system. You are also at liberty to configure a number of options to make it match your project more closely.
+You can use LaraTicket straight out of the box without extra efforts or configurations
 
 ### Features
 1. Two main user roles (admin and user)
@@ -64,19 +65,18 @@ You can change the configuration values as needed
 - Admin can (should) add categories and priorities as needed
 
 ### Routes
-Route::get('admin/tickets', "TicketController@index");
-Route::get('tickets/create', "TicketController@create");
-Route::get('tickets/{status?}', "TicketController@index");    Route::get('tickets/show/{ticket}', "TicketController@show");
-Route::get('tickets/{ticket}/update', "TicketController@changestatus");
-Route::post('tickets/store', "TicketController@store");
-Route::put('tickets/{ticket}', "TicketController@update");
-Route::delete('tickets/{ticket}', "TicketController@delete");
-
-Route::post('tickets/comments/store/{ticket}', "TicketController@reply");
-
-Route::get('admin/tickets/options/settings', "TicketOptionController@options");
-Route::post('admin/tickets/options/settings', "TicketOptionController@store");
-Route::put('admin/tickets/options/settings', "TicketOptionController@update");
+* Route::get('admin/tickets', "TicketController@index");
+* Route::get('tickets/create', "TicketController@create");
+* Route::get('tickets/{status?}', "TicketController@index");
+* Route::get('tickets/show/{ticket}', "TicketController@show");
+* Route::get('tickets/{ticket}/update', "TicketController@changestatus");
+* Route::post('tickets/store', "TicketController@store");
+* Route::put('tickets/{ticket}', "TicketController@update");
+* Route::delete('tickets/{ticket}', "TicketController@delete");
+* Route::post('tickets/comments/store/{ticket}', "TicketController@reply");
+* Route::get('admin/tickets/options/settings', "TicketOptionController@options");
+* Route::post('admin/tickets/options/settings', "TicketOptionController@store");
+* Route::put('admin/tickets/options/settings', "TicketOptionController@update");
 
 ### Licence
-LaraTicket is MIT Licesed. Use and enjoy as you like!
+LaraTicket is MIT Licensed. Use and enjoy as you like!
