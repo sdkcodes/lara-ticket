@@ -1,7 +1,7 @@
 @extends(config('laraticket.layout'))
 
 @section('content')
-
+@include('laraticket::partials.common-header')
 <div class="container-fluid">
 	<ul class="nav nav-tabs">
 	  <li role="presentation" class="nav-item {{ is_null(Request::segment(2)) || Request::segment(2) == "open" ? 'active' : ''}}"><a href="{{ url('tickets/open') }}" class="nav-link">Open <span class="badge badge-secondary">{{ $open_count }}</span></a></li>

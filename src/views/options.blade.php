@@ -1,7 +1,7 @@
 @extends(config('laraticket.layout'))
 
 @section('content')
-
+@include('laraticket::partials.common-header')
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-12">

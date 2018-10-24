@@ -8,7 +8,7 @@
 	@yield('after_styles')
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	{{-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="{{ url(config('laraticket.return_url')) }}">Return to Dashboard</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -29,15 +29,12 @@
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item" href="{{ url('admin/tickets/options/settings')}}">Ticket options</a>
-	          {{-- <a class="dropdown-item" href="#">Another action</a>
-	          <div class="dropdown-divider"></div>
-	          <a class="dropdown-item" href="#">Something else here</a> --}}
 	        </div>
 	      </li>
 	      @endif
 	    </ul>
 	  </div>
-	</nav>
+	</nav> --}}
 	@yield('content')
 	@yield('before_scripts')
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

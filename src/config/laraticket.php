@@ -2,6 +2,13 @@
 
 return[
 	'layout' => 'laraticket::layouts.master',
+	/*
+	|--------------------------
+	| If you probably need to use a different template layout for the admin part of the ticket
+	| you can make change this value to match
+	|--------------------------
+	*/
+	'admin_layout' => 'laraticket::layouts.master',
 	/**
 	 * In case your default users tablename is not users
 	 * You can change this value to reflect your table name 

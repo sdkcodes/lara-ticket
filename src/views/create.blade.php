@@ -4,7 +4,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
 @endsection
 @section('content')
-
+@include('laraticket::partials.common-header')
 <div class="container">
 	<div class="row">
 		<div class="col-md-9 col-md-offset-2">
