@@ -27,5 +27,19 @@ return[
 
 	/**@internal Where should users be taken to when they click on navbar brand
 	**/
-	'return_url' => 'dashboard'
+	'return_url' => 'dashboard',
+	/*
+	|-----------------------------------------------------------------------
+	|Use this to set the number of items returned when retrieving from database
+	|For pagination purpose
+	|-----------------------------------------------------------------------
+	*/
+	'per_page' => 20,
+	/*
+	|--------------------------------------------------------
+	|If you have a customised pagination template to use,
+	|set it's value here
+	|
+	*/
+	'pagination_view_name' => 'pagination::bootstrap-4'
 ];

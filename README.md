@@ -11,14 +11,28 @@ You can use LaraTicket straight out of the box without extra efforts or configur
 3. Feature rich text editor with image and video embeding
 4. Uses bootstrap 4
 5. An easy to use admin panel
-6. Custom views, so you do need to write your own views
+6. Custom views, so you do not need to write your own views
 7. Custom predefined routes
 
 ### Installation
-- To install LaraTicket, in your project root directory, run
+- To install LaraTicket, in your existing project root directory, run
 `composer require sdkcodes/lara-ticket`
 - If you're using Laravel < 5.4, copy and add this line to the `providers` array in your `config/app.php` file
 `Sdkcodes\LaraTicket\LaraTicketServiceProvider::class,`
+
+```
+<?php
+
+namespace App;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Sdkcodes\LaraTicket\Traits\UserTicket;
+
+class User extends Authenticatable
+{
+    use UserTicket;
+    ...
+```
 - Laravel >= 5.5 auto-discovers the package, so you do not need to add it manually.
 - Publish the views, config and migrations with the command 
 `php artisan vendor:publish`

@@ -16,10 +16,15 @@ use Sdkcodes\LaraTicket\Notifications\TicketNotification;
 
 class TicketController extends Controller
 {
+    protected $perPage = "";
+
+    public function __construct(){
+        $this->perPage = config('laraticket.per_page');
+    }
 
     public function index($status="open"){
     	if (!auth()->user()->isTicketAdmin()){
-    		$tickets = auth()->user()->tickets()->where('status', $status)->paginate(30);
+    		$tickets = auth()->user()->tickets()->where('status', $status)->paginate($this->perPage);
     		$data['title'] = $data['breadcrumb'] = "Tickets";
     		$data['tickets'] = $tickets;
     		$data['open_count'] = auth()->user()->countTickets("open");
@@ -27,7 +32,7 @@ class TicketController extends Controller
     		return view('laraticket::user_tickets', $data);
     	}
     	elseif (auth()->user()->isTicketAdmin()) {
-    		$tickets = Ticket::where('status', $status)->latest()->paginate(30);
+    		$tickets = Ticket::where('status', $status)->latest()->paginate($this->perPage);
     		$data['title'] = $data['breadcrumb'] = "Tickets";
     		$data['tickets'] = $tickets;
     		$data['open_count'] = Ticket::countTickets("open");
@@ -125,7 +130,7 @@ class TicketController extends Controller
     	$ticket = Ticket::findOrFail($ticket);
     	if (auth()->user()->isTicketAdmin() OR $ticket->user_id === auth()->id()){
     		$ticket->delete();	
-            return back()->with(['status' => 'info', 'message' => 'Ticket deleted']);
+            return redirect(url('tickets'))->with(['status' => 'info', 'message' => 'Ticket deleted']);
     	}
     	else{
             return redirect(url('tickets'))->with(['status' => 'info', "message" => "You do not have permission to delete this ticket"]);
