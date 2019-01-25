@@ -16,7 +16,7 @@ You can use LaraTicket straight out of the box without extra efforts or configur
 
 ### Installation
 - To install LaraTicket, in your existing project root directory, run
-`composer require sdkcodes/lara-ticket 0.0.2`
+`composer require sdkcodes/lara-ticket 0.0.3`
 - If you're using Laravel < 5.4, copy and add this line to the `providers` array in your `config/app.php` file
 `Sdkcodes\LaraTicket\LaraTicketServiceProvider::class,`
 
