@@ -16,7 +16,7 @@
 	],
 	"autoload": {
 	    "psr-4": {
-	        "Sdkcodes\\LaraTicket\\": "src/"
+	        "Sdkcodes\\lara-ticket\\": "src/"
 	    }
 	},
 	"extra" : {

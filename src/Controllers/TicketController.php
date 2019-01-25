@@ -2,16 +2,20 @@
 
 namespace Sdkcodes\LaraTicket\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Notification;
 use Sdkcodes\LaraTicket\Models\Ticket;
-use Sdkcodes\LaraTicket\Models\TicketComment;
+use Illuminate\Support\Facades\Notification;
 use Sdkcodes\LaraTicket\Models\TicketOption;
+use Sdkcodes\LaraTicket\Models\TicketComment;
+use Sdkcodes\LaraTicket\Events\TicketSubmitted;
+use Sdkcodes\LaraTicket\Events\TicketClosed;
+use Sdkcodes\LaraTicket\Events\TicketDeleted;
+use Sdkcodes\LaraTicket\Events\TicketReplied;
 use Sdkcodes\LaraTicket\Notifications\TicketNotification;
 
 class TicketController extends Controller
@@ -23,6 +27,7 @@ class TicketController extends Controller
     }
 
     public function index($status="open"){
+		
     	if (!auth()->user()->isTicketAdmin()){
     		$tickets = auth()->user()->tickets()->where('status', $status)->paginate($this->perPage);
     		$data['title'] = $data['breadcrumb'] = "Tickets";
@@ -75,7 +80,8 @@ class TicketController extends Controller
     	$ticket->save();
     	$notification_data = ['message' => auth()->user()->name . " submitted a ticket",
 	    	"url" => url("tickets/show/$ticket->slug")];
-    	// Notification::send( (new User)->getTicketAdmins(), new TicketNotification($ticket, $notification_data));
+		// Notification::send( (new User)->getTicketAdmins(), new TicketNotification($ticket, $notification_data));
+		event(new TicketSubmitted($ticket));
     	return redirect(url('tickets'))->with(['status' => 'success', 'message' => 'Ticket created, you will be notified when there\'s a reply']);
     	
     }
@@ -89,7 +95,8 @@ class TicketController extends Controller
     		$comment->user_id = auth()->id();
     		$comment->ticket_id = $id;
     		$comment->body = $request->content;
-    		$comment->save();
+			$comment->save();
+			event(new TicketReplied($comment));
             return back()->with(['status' => 'success', 'message' => "Comment submitted successfully"]);
     	}
     	else{
@@ -110,14 +117,15 @@ class TicketController extends Controller
     				break;
     			case 'close':
     				$ticket->status = "closed";
-    				$ticket->date_closed = Carbon::now();
+					$ticket->date_closed = Carbon::now();
     				break;
     			default:
     				$ticket->status = "close";
     				$ticket->date_closed = Carbon::now();
     				break;
     		}
-    		$ticket->save();
+			$ticket->save();
+			event(new TicketClosed($ticket));
             return back()->with(['status' => 'success', 'message' => "Ticket status updated successfully"]);
     	}
     	else{
@@ -129,6 +137,7 @@ class TicketController extends Controller
     public function delete($ticket){
     	$ticket = Ticket::findOrFail($ticket);
     	if (auth()->user()->isTicketAdmin() OR $ticket->user_id === auth()->id()){
+			event(new TicketDeleted($ticket));
     		$ticket->delete();	
             return redirect(url('tickets'))->with(['status' => 'info', 'message' => 'Ticket deleted']);
     	}

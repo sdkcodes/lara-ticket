@@ -9,6 +9,13 @@ return[
 	|--------------------------
 	*/
 	'admin_layout' => 'laraticket::layouts.master',
+	/*
+	|------------------------------------------
+	| Set this value to yes to allow admin be able to create tickets too
+	| ------------------------------------------
+	 */
+	'can_admin_create_ticket' => 'no',
+
 	/**
 	 * In case your default users tablename is not users
 	 * You can change this value to reflect your table name 
@@ -42,4 +49,5 @@ return[
 	|
 	*/
 	'pagination_view_name' => 'pagination::bootstrap-4'
+
 ];
